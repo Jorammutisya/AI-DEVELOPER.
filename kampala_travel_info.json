@@ -1,0 +1,430 @@
+{
+  "city": "Kampala",
+  "country_code": "UG",
+  "weather": {
+    "coord": {
+      "lon": 32.5822,
+      "lat": 0.3163
+    },
+    "weather": [
+      {
+        "id": 500,
+        "main": "Rain",
+        "description": "light rain",
+        "icon": "10n"
+      }
+    ],
+    "base": "stations",
+    "main": {
+      "temp": 18.25,
+      "feels_like": 18.64,
+      "temp_min": 18.25,
+      "temp_max": 18.25,
+      "pressure": 1013,
+      "humidity": 96,
+      "sea_level": 1013,
+      "grnd_level": 880
+    },
+    "visibility": 10000,
+    "wind": {
+      "speed": 1.27,
+      "deg": 205,
+      "gust": 2.41
+    },
+    "rain": {
+      "1h": 0.56
+    },
+    "clouds": {
+      "all": 100
+    },
+    "dt": 1793294550,
+    "sys": {
+      "country": "UG",
+      "sunrise": 1793244611,
+      "sunset": 1793288185
+    },
+    "timezone": 10800,
+    "id": 232422,
+    "name": "Kampala",
+    "cod": 200
+  },
+  "country": {
+    "names": {
+      "alternates": [
+        "Jamhuri ya Uganda"
+      ],
+      "common": "Uganda",
+      "native": {
+        "eng": {
+          "common": "Uganda",
+          "official": "Republic of Uganda"
+        },
+        "swa": {
+          "common": "Uganda",
+          "official": "Republic of Uganda"
+        }
+      },
+      "official": "Republic of Uganda",
+      "translations": {
+        "ara": {
+          "common": "أوغندا",
+          "official": "جمهورية أوغندا"
+        },
+        "bre": {
+          "common": "Ouganda",
+          "official": "Republik Ouganda"
+        },
+        "ces": {
+          "common": "Uganda",
+          "official": "Ugandská republika"
+        },
+        "cym": {
+          "common": "Uganda",
+          "official": "Republic of Uganda"
+        },
+        "deu": {
+          "common": "Uganda",
+          "official": "Republik Uganda"
+        },
+        "est": {
+          "common": "Uganda",
+          "official": "Uganda Vabariik"
+        },
+        "fas": {
+          "common": "اوگاندا",
+          "official": "جمهوری اوگاندا"
+        },
+        "fin": {
+          "common": "Uganda",
+          "official": "Ugandan tasavalta"
+        },
+        "fra": {
+          "common": "Ouganda",
+          "official": "République de l'Ouganda"
+        },
+        "hrv": {
+          "common": "Uganda",
+          "official": "Republika Uganda"
+        },
+        "hun": {
+          "common": "Uganda",
+          "official": "Ugandai Köztársaság"
+        },
+        "ind": {
+          "common": "Uganda",
+          "official": "Republik Uganda"
+        },
+        "ita": {
+          "common": "Uganda",
+          "official": "Repubblica di Uganda"
+        },
+        "jpn": {
+          "common": "ウガンダ",
+          "official": "ウガンダ共和国"
+        },
+        "kor": {
+          "common": "우간다",
+          "official": "우간다 공화국"
+        },
+        "nld": {
+          "common": "Oeganda",
+          "official": "Republiek Uganda"
+        },
+        "pol": {
+          "common": "Uganda",
+          "official": "Republika Ugandy"
+        },
+        "por": {
+          "common": "Uganda",
+          "official": "República do Uganda"
+        },
+        "rus": {
+          "common": "Уганда",
+          "official": "Республика Уганда"
+        },
+        "slk": {
+          "common": "Uganda",
+          "official": "Ugandská republika"
+        },
+        "spa": {
+          "common": "Uganda",
+          "official": "República de Uganda"
+        },
+        "srp": {
+          "common": "Уганда",
+          "official": "Република Уганда"
+        },
+        "swe": {
+          "common": "Uganda",
+          "official": "Republiken Uganda"
+        },
+        "tur": {
+          "common": "Uganda",
+          "official": "Uganda Cumhuriyeti"
+        },
+        "urd": {
+          "common": "یوگنڈا",
+          "official": "جمہوریہ یوگنڈا"
+        },
+        "zho": {
+          "common": "乌干达",
+          "official": "乌干达共和国"
+        }
+      }
+    },
+    "codes": {
+      "alpha_2": "UG",
+      "alpha_3": "UGA",
+      "ccn3": "800",
+      "cioc": "UGA",
+      "fifa": "UGA",
+      "fips": "UG",
+      "gec": "UG"
+    },
+    "capitals": [
+      {
+        "attributes": {
+          "administrative": false,
+          "constitutional": false,
+          "executive": false,
+          "judicial": false,
+          "legislative": false,
+          "primary": true
+        },
+        "coordinates": {
+          "lat": 0.32,
+          "lng": 32.55
+        },
+        "name": "Kampala"
+      }
+    ],
+    "flag": {
+      "colors": {
+        "dominant": "#000000",
+        "palette": [
+          {
+            "hex": "#000000",
+            "proportion": 0.30470534490634993
+          },
+          {
+            "hex": "#d50003",
+            "proportion": 0.2987665600730927
+          },
+          {
+            "hex": "#ffd000",
+            "proportion": 0.3339424394700777
+          },
+          {
+            "hex": "#f2f1ec",
+            "proportion": 0.03883051621745089
+          },
+          {
+            "hex": "#f6ee1d",
+            "proportion": 0.011649154865235267
+          },
+          {
+            "hex": "#62582c",
+            "proportion": 0.010735495660118775
+          },
+          {
+            "hex": "#fbfbff",
+            "proportion": 0.00045682960255824577
+          },
+          {
+            "hex": "#04070c",
+            "proportion": 0.0009136592051164915
+          }
+        ],
+        "prominent": "#ffd000",
+        "swatches": {
+          "dark_muted": "#04070c",
+          "dark_vibrant": null,
+          "light_muted": "#f2f1ec",
+          "light_vibrant": "#ffd000",
+          "muted": "#62582c",
+          "vibrant": "#d50003"
+        }
+      },
+      "description": "The flag of Uganda is composed of six equal horizontal bands of black, yellow, red, black, yellow and red. A white circle bearing a hoist-side facing grey red-crested crane is superimposed in the center of the field.",
+      "emoji": "🇺🇬",
+      "html_entity": "&#127482;&#127468;",
+      "unicode": "U+1F1FA U+1F1EC",
+      "url_png": "https://flags.restcountries.com/v5/w640/ug.png",
+      "url_svg": "https://flags.restcountries.com/v5/svg/ug.svg"
+    },
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "area": {
+      "kilometers": 241550,
+      "miles": 93262.9
+    },
+    "assets": [],
+    "borders": [
+      "COD",
+      "KEN",
+      "RWA",
+      "SSD",
+      "TZA"
+    ],
+    "calling_codes": [
+      "256"
+    ],
+    "cars": {
+      "driving_side": "left",
+      "signs": [
+        "EAU"
+      ]
+    },
+    "classification": {
+      "dependency": false,
+      "dependency_type": "",
+      "disputed": false,
+      "iso_status": "official",
+      "sovereign": true,
+      "un_member": true,
+      "un_observer": false
+    },
+    "continents": [
+      "Africa"
+    ],
+    "coordinates": {
+      "lat": 1,
+      "lng": 32
+    },
+    "currencies": [
+      {
+        "code": "UGX",
+        "name": "Ugandan shilling",
+        "symbol": "Sh"
+      }
+    ],
+    "date": {
+      "academic_year_start": {
+        "day": 1,
+        "month": 2
+      },
+      "fiscal_year_start": {
+        "corporate": {
+          "basis": "default",
+          "day": 1,
+          "month": 7
+        },
+        "government": {
+          "day": 1,
+          "month": 7
+        },
+        "personal": {
+          "day": 1,
+          "month": 1
+        }
+      },
+      "start_of_week": "monday"
+    },
+    "demonyms": {
+      "eng": {
+        "f": "Ugandan",
+        "m": "Ugandan"
+      },
+      "fra": {
+        "f": "Ougandaise",
+        "m": "Ougandais"
+      }
+    },
+    "descriptions": {
+      "long": "Uganda is a republic with Kampala as its capital and English and Swahili as official languages, and the White Nile rises from Lake Victoria within it. The shilling is the currency, and coffee, fish, gold and, more recently, crude oil lead its exports.",
+      "short": "Uganda is a landlocked East African republic on the northern shore of Lake Victoria and the Nile."
+    },
+    "economy": {
+      "gini_coefficient": {
+        "2005": 42.9,
+        "2009": 44.2,
+        "2012": 41,
+        "2016": 42.8,
+        "2019": 42.7
+      }
+    },
+    "government_type": "Unitary presidential republic under an authoritarian dictatorship",
+    "landlocked": true,
+    "languages": [
+      {
+        "bcp47": "en",
+        "iso639_1": "en",
+        "iso639_2b": "eng",
+        "iso639_2t": "eng",
+        "iso639_3": "eng",
+        "name": "English",
+        "native_name": "English"
+      },
+      {
+        "bcp47": "sw",
+        "iso639_1": "sw",
+        "iso639_2b": "swa",
+        "iso639_2t": "swa",
+        "iso639_3": "swa",
+        "name": "Swahili",
+        "native_name": "Kiswahili"
+      }
+    ],
+    "leaders": [
+      {
+        "message": "data.leaders is only available on paid plans. Go to https://restcountries.com/plans to make updates to your account.",
+        "sample": "https://files-03.restcountries.com/countries.00/sample.leaders.json"
+      }
+    ],
+    "links": {
+      "google_maps": "https://goo.gl/maps/Y7812hFiGa8LD9N68",
+      "official": "",
+      "open_street_maps": "https://www.openstreetmap.org/relation/192796",
+      "wikipedia": "https://en.wikipedia.org/wiki/Uganda"
+    },
+    "memberships": {
+      "african_union": true,
+      "arab_league": false,
+      "asean": false,
+      "brics": false,
+      "commonwealth": true,
+      "eu": false,
+      "eurozone": false,
+      "g20": false,
+      "g7": false,
+      "nato": false,
+      "oecd": false,
+      "opec": false,
+      "schengen": false,
+      "un": true
+    },
+    "number_format": {
+      "decimal_separator": ".",
+      "thousands_separator": ","
+    },
+    "parent": {
+      "alpha_2": "",
+      "alpha_3": ""
+    },
+    "population": 45905417,
+    "postal_code": {
+      "format": "",
+      "regex": ""
+    },
+    "timezones": [
+      "UTC+03:00"
+    ],
+    "tlds": [
+      ".ug"
+    ],
+    "units": {
+      "measurement_system": "metric",
+      "temperature_scale": "Celsius"
+    },
+    "uuid": "8dc474d1-80bc-47bc-9af1-9ebc7b45d326",
+    "_match": [
+      {
+        "path": "codes.alpha_2",
+        "value": "UG"
+      }
+    ],
+    "_meta": {
+      "lastUpdatedTimestamp": 1792328219
+    }
+  }
+}

@@ -1,0 +1,808 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skyline Weather Dashboard</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 24px;
+      background: linear-gradient(135deg, #e8f3ff, #f6f9ff);
+      color: #1f2937;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    header h1 {
+      color: #1769aa;
+      margin-bottom: 8px;
+      font-size: 36px;
+    }
+
+    header p {
+      color: #64748b;
+      margin: 0;
+    }
+
+    .search-panel,
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 5px 20px rgba(20, 60, 100, 0.08);
+      margin-bottom: 22px;
+    }
+
+    .search-panel {
+      display: grid;
+      grid-template-columns: 2fr 2fr auto;
+      gap: 12px;
+      align-items: end;
+    }
+
+    .field label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 9px;
+      font-size: 15px;
+    }
+
+    button {
+      padding: 13px 20px;
+      border: none;
+      border-radius: 9px;
+      background: #1769aa;
+      color: white;
+      font-weight: bold;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #12558a;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .status {
+      min-height: 20px;
+      margin: 0 0 18px;
+      text-align: center;
+      color: #1769aa;
+      font-weight: bold;
+    }
+
+    .error {
+      color: #b91c1c;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 18px;
+      color: #1769aa;
+      font-size: 21px;
+    }
+
+    .empty {
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    .current-top {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 18px;
+    }
+
+    .weather-icon {
+      width: 90px;
+      height: 90px;
+    }
+
+    .temperature {
+      font-size: 43px;
+      font-weight: bold;
+      color: #172554;
+    }
+
+    .weather-description {
+      color: #64748b;
+      text-transform: capitalize;
+      margin-top: 5px;
+    }
+
+    .city-name {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .weather-details {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .detail-box {
+      background: #f1f7ff;
+      padding: 13px;
+      border-radius: 10px;
+    }
+
+    .detail-box span {
+      display: block;
+      color: #64748b;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .detail-box strong {
+      font-size: 16px;
+      overflow-wrap: anywhere;
+    }
+
+    .forecast-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .forecast-day {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      background: #f1f7ff;
+      border-radius: 10px;
+      padding: 10px;
+    }
+
+    .forecast-day img {
+      width: 55px;
+      height: 55px;
+    }
+
+    .forecast-date {
+      font-weight: bold;
+      min-width: 90px;
+    }
+
+    .forecast-description {
+      color: #64748b;
+      font-size: 13px;
+      text-transform: capitalize;
+    }
+
+    .forecast-temp {
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .country-hero {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 17px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .country-code {
+      background: #1769aa;
+      color: white;
+      border-radius: 10px;
+      padding: 12px;
+      font-weight: bold;
+      min-width: 52px;
+      text-align: center;
+    }
+
+    .country-region {
+      color: #64748b;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .country-name {
+      font-size: 20px;
+      font-weight: bold;
+      overflow-wrap: anywhere;
+    }
+
+    .country-flag {
+      width: 65px;
+      max-height: 45px;
+      object-fit: contain;
+      margin-left: auto;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+    }
+
+    .country-row {
+      display: grid;
+      grid-template-columns: 100px minmax(0, 1fr);
+      gap: 10px;
+      padding: 12px 0;
+      border-bottom: 1px solid #eef2f7;
+    }
+
+    .country-row span {
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .country-row strong {
+      text-align: right;
+      overflow-wrap: anywhere;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 22px;
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    @media (max-width: 760px) {
+      body {
+        padding: 14px;
+      }
+
+      .search-panel,
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+
+      header h1 {
+        font-size: 29px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .forecast-date {
+        min-width: auto;
+        font-size: 13px;
+      }
+
+      .forecast-day img {
+        width: 42px;
+        height: 42px;
+      }
+
+      .forecast-description {
+        display: none;
+      }
+
+      .country-row {
+        grid-template-columns: 85px minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <header>
+      <h1>City Weather Dashboard</h1>
+      <p>Current weather, forecast and country information</p>
+    </header>
+
+    <form id="weatherForm" class="search-panel">
+      <div class="field">
+        <label for="cityInput">City name</label>
+        <input
+          type="text"
+          id="cityInput"
+          placeholder="e.g. Mombasa, Nairobi, London"
+          value="Mombasa"
+          required
+        >
+      </div>
+
+      <div class="field">
+        <label for="apiKeyInput">OpenWeatherMap API key</label>
+        <input
+          type="password"
+          id="apiKeyInput"
+          placeholder="Enter your API key"
+          autocomplete="off"
+          required
+        >
+      </div>
+
+      <button id="searchButton" type="submit">Get Weather</button>
+    </form>
+
+    <p id="statusMessage" class="status" role="status">
+      Enter your API key and click Get Weather.
+    </p>
+
+    <div class="main-grid">
+
+      <section class="card">
+        <h2>Current Weather</h2>
+        <div id="currentContent">
+          <p class="empty">Weather information will appear here.</p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>3-Day Forecast</h2>
+        <div id="forecastContent">
+          <p class="empty">The forecast will appear here.</p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Country Information</h2>
+        <div id="countryContent">
+          <p class="empty">
+            Country details will appear here after you search for a city.
+          </p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>About This Dashboard</h2>
+        <p>
+          This dashboard retrieves live weather data for a city and displays
+          its current conditions, upcoming forecast and country details.
+        </p>
+        <p>
+          Weather information is provided by OpenWeatherMap.
+          Country details are loaded from a public country dataset.
+        </p>
+        <p class="empty">
+          Internet access is required to retrieve the latest information.
+        </p>
+      </section>
+
+    </div>
+
+    <footer>
+      Weather data by OpenWeatherMap · Country data by public countries dataset
+    </footer>
+
+  </div>
+
+  <script>
+    const WEATHER_BASE = "https://api.openweathermap.org/data/2.5";
+    const ICON_BASE = "https://openweathermap.org/img/wn/";
+
+    const COUNTRY_DATA_URL =
+      "https://raw.githubusercontent.com/mledoze/countries/master/countries.json";
+
+    const weatherForm = document.getElementById("weatherForm");
+    const cityInput = document.getElementById("cityInput");
+    const apiKeyInput = document.getElementById("apiKeyInput");
+    const searchButton = document.getElementById("searchButton");
+    const statusMessage = document.getElementById("statusMessage");
+
+    const currentContent = document.getElementById("currentContent");
+    const forecastContent = document.getElementById("forecastContent");
+    const countryContent = document.getElementById("countryContent");
+
+    // Fetch JSON and report useful HTTP/API errors.
+    async function fetchJSON(url) {
+      const response = await fetch(url);
+
+      let data;
+
+      try {
+        data = await response.json();
+      } catch {
+        throw new Error(`The server returned an invalid response (HTTP ${response.status}).`);
+      }
+
+      if (!response.ok) {
+        throw new Error(
+          data.message ||
+          `Request failed with HTTP status ${response.status}.`
+        );
+      }
+
+      return data;
+    }
+
+    function makeDetail(label, value) {
+      const box = document.createElement("div");
+      box.className = "detail-box";
+
+      const labelElement = document.createElement("span");
+      labelElement.textContent = label;
+
+      const valueElement = document.createElement("strong");
+      valueElement.textContent = value;
+
+      box.append(labelElement, valueElement);
+      return box;
+    }
+
+    // Display current weather.
+    function renderCurrentWeather(data) {
+      currentContent.innerHTML = "";
+
+      const top = document.createElement("div");
+      top.className = "current-top";
+
+      const icon = document.createElement("img");
+      icon.className = "weather-icon";
+      icon.src = `${ICON_BASE}${data.weather[0].icon}@2x.png`;
+      icon.alt = data.weather[0].description;
+
+      const summary = document.createElement("div");
+
+      const city = document.createElement("div");
+      city.className = "city-name";
+      city.textContent =
+        `${data.name}${data.sys?.country ? ", " + data.sys.country : ""}`;
+
+      const temperature = document.createElement("div");
+      temperature.className = "temperature";
+      temperature.textContent = `${Math.round(data.main.temp)}°C`;
+
+      const description = document.createElement("div");
+      description.className = "weather-description";
+      description.textContent = data.weather[0].description;
+
+      summary.append(city, temperature, description);
+      top.append(icon, summary);
+      currentContent.appendChild(top);
+
+      const details = document.createElement("div");
+      details.className = "weather-details";
+
+      details.append(
+        makeDetail("Feels like", `${Math.round(data.main.feels_like)}°C`),
+        makeDetail("Humidity", `${data.main.humidity}%`),
+        makeDetail("Wind speed", `${data.wind.speed} m/s`),
+        makeDetail(
+          "Pressure",
+          `${data.main.pressure} hPa`
+        ),
+        makeDetail(
+          "Visibility",
+          data.visibility != null
+            ? `${(data.visibility / 1000).toFixed(1)} km`
+            : "Not available"
+        ),
+        makeDetail(
+          "Coordinates",
+          `${data.coord.lat.toFixed(2)}, ${data.coord.lon.toFixed(2)}`
+        )
+      );
+
+      currentContent.appendChild(details);
+    }
+
+    // Display the next three available forecast dates.
+    function renderForecast(data) {
+      forecastContent.innerHTML = "";
+
+      const days = new Map();
+
+      for (const item of data.list) {
+        const date = item.dt_txt.split(" ")[0];
+
+        if (!days.has(date)) {
+          days.set(date, []);
+        }
+
+        days.get(date).push(item);
+      }
+
+      const forecastDays = Array.from(days.entries()).slice(0, 3);
+
+      if (forecastDays.length === 0) {
+        forecastContent.innerHTML =
+          '<p class="empty">No forecast data is available.</p>';
+        return;
+      }
+
+      const list = document.createElement("div");
+      list.className = "forecast-list";
+
+      for (const [date, items] of forecastDays) {
+        // Prefer a forecast close to midday.
+        const chosen = items.reduce((best, item) => {
+          const hour = Number(item.dt_txt.slice(11, 13));
+          const bestHour = Number(best.dt_txt.slice(11, 13));
+
+          return Math.abs(hour - 12) < Math.abs(bestHour - 12)
+            ? item
+            : best;
+        });
+
+        const row = document.createElement("div");
+        row.className = "forecast-day";
+
+        const dateElement = document.createElement("div");
+        dateElement.className = "forecast-date";
+
+        const parsedDate = new Date(`${date}T12:00:00`);
+        dateElement.textContent = parsedDate.toLocaleDateString(
+          undefined,
+          { weekday: "short", month: "short", day: "numeric" }
+        );
+
+        const icon = document.createElement("img");
+        icon.src = `${ICON_BASE}${chosen.weather[0].icon}.png`;
+        icon.alt = chosen.weather[0].description;
+
+        const description = document.createElement("div");
+        description.className = "forecast-description";
+        description.textContent = chosen.weather[0].description;
+
+        const temp = document.createElement("div");
+        temp.className = "forecast-temp";
+        temp.textContent =
+          `${Math.round(chosen.main.temp_max)}° / ` +
+          `${Math.round(chosen.main.temp_min)}°C`;
+
+        row.append(dateElement, icon, description, temp);
+        list.appendChild(row);
+      }
+
+      forecastContent.appendChild(list);
+    }
+
+    // Fetch country data independently of the weather service.
+    async function renderCountry(countryCode, cityName) {
+      countryContent.innerHTML =
+        '<p class="empty">Loading country information...</p>';
+
+      try {
+        const code = String(countryCode || "").trim().toUpperCase();
+
+        if (!code) {
+          throw new Error(
+            "The weather response did not include a country code."
+          );
+        }
+
+        const countries = await fetchJSON(COUNTRY_DATA_URL);
+
+        if (!Array.isArray(countries)) {
+          throw new Error("The country dataset has an unexpected format.");
+        }
+
+        const country = countries.find(
+          item => String(item.cca2 || "").toUpperCase() === code
+        );
+
+        if (!country) {
+          throw new Error(`Country code "${code}" was not found.`);
+        }
+
+        const countryName =
+          country.name?.common || country.name?.official || code;
+
+        const capital = Array.isArray(country.capital)
+          ? country.capital.join(", ")
+          : country.capital || "Not available";
+
+        const population = country.population != null
+          ? Number(country.population).toLocaleString("en-US")
+          : "Not available";
+
+        const currencies = Object.values(country.currencies || {})
+          .map(currency => {
+            if (!currency.name) return "";
+            return currency.symbol
+              ? `${currency.name} (${currency.symbol})`
+              : currency.name;
+          })
+          .filter(Boolean)
+          .join(", ") || "Not available";
+
+        const languages = Object.values(country.languages || {}).join(", ")
+          || "Not available";
+
+        countryContent.innerHTML = "";
+
+        const hero = document.createElement("div");
+        hero.className = "country-hero";
+
+        const codeElement = document.createElement("div");
+        codeElement.className = "country-code";
+        codeElement.textContent = country.cca2 || code;
+
+        const nameBlock = document.createElement("div");
+
+        const regionElement = document.createElement("div");
+        regionElement.className = "country-region";
+        regionElement.textContent = country.region || "Country";
+
+        const nameElement = document.createElement("div");
+        nameElement.className = "country-name";
+        nameElement.textContent = countryName;
+
+        nameBlock.append(regionElement, nameElement);
+        hero.append(codeElement, nameBlock);
+
+        const flagURL = country.flags?.png || country.flags?.svg;
+
+        if (flagURL) {
+          const flag = document.createElement("img");
+          flag.className = "country-flag";
+          flag.src = flagURL;
+          flag.alt = `${countryName} flag`;
+          flag.onerror = () => {
+            flag.remove();
+          };
+          hero.appendChild(flag);
+        } else if (country.flag) {
+          const flagEmoji = document.createElement("span");
+          flagEmoji.textContent = country.flag;
+          flagEmoji.style.fontSize = "28px";
+          flagEmoji.style.marginLeft = "auto";
+          hero.appendChild(flagEmoji);
+        }
+
+        countryContent.appendChild(hero);
+
+        const details = [
+          ["Capital", capital],
+          [
+            "Region",
+            [country.region, country.subregion]
+              .filter(Boolean)
+              .join(" · ") || "Not available"
+          ],
+          ["Population", population],
+          ["Currency", currencies],
+          ["Languages", languages]
+        ];
+
+        for (const [label, value] of details) {
+          const row = document.createElement("div");
+          row.className = "country-row";
+
+          const labelElement = document.createElement("span");
+          labelElement.textContent = label;
+
+          const valueElement = document.createElement("strong");
+          valueElement.textContent = value;
+
+          row.append(labelElement, valueElement);
+          countryContent.appendChild(row);
+        }
+
+      } catch (error) {
+        console.error("Country information error:", error);
+
+        countryContent.innerHTML = "";
+
+        const message = document.createElement("p");
+        message.className = "empty error";
+        message.textContent =
+          `Country information could not be loaded for "${cityName}". ` +
+          error.message;
+
+        countryContent.appendChild(message);
+      }
+    }
+
+    // Search weather, then load country details using the returned country code.
+    weatherForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const city = cityInput.value.trim();
+      const apiKey = apiKeyInput.value.trim();
+
+      if (!city || !apiKey) {
+        statusMessage.textContent =
+          "Please enter both a city name and an API key.";
+        statusMessage.className = "status error";
+        return;
+      }
+
+      searchButton.disabled = true;
+      statusMessage.textContent = "Loading weather and country information...";
+      statusMessage.className = "status";
+
+      currentContent.innerHTML =
+        '<p class="empty">Loading current weather...</p>';
+
+      forecastContent.innerHTML =
+        '<p class="empty">Loading forecast...</p>';
+
+      countryContent.innerHTML =
+        '<p class="empty">Loading country information...</p>';
+
+      try {
+        const encodedCity = encodeURIComponent(city);
+
+        const currentURL =
+          `${WEATHER_BASE}/weather?q=${encodedCity}` +
+          `&appid=${encodeURIComponent(apiKey)}&units=metric`;
+
+        const forecastURL =
+          `${WEATHER_BASE}/forecast?q=${encodedCity}` +
+          `&appid=${encodeURIComponent(apiKey)}&units=metric`;
+
+        const currentData = await fetchJSON(currentURL);
+
+        renderCurrentWeather(currentData);
+
+        // Forecast may fail independently without hiding current weather.
+        try {
+          const forecastData = await fetchJSON(forecastURL);
+          renderForecast(forecastData);
+        } catch (forecastError) {
+          console.error("Forecast error:", forecastError);
+          forecastContent.innerHTML = "";
+
+          const message = document.createElement("p");
+          message.className = "empty error";
+          message.textContent =
+            `Forecast unavailable: ${forecastError.message}`;
+
+          forecastContent.appendChild(message);
+        }
+
+        // Country lookup has its own error handling.
+        await renderCountry(currentData.sys?.country, currentData.name);
+
+        statusMessage.textContent =
+          `Weather loaded for ${currentData.name}. Check each panel for details.`;
+        statusMessage.className = "status";
+
+      } catch (error) {
+        console.error("Weather request error:", error);
+
+        statusMessage.textContent =
+          `Weather error: ${error.message}`;
+        statusMessage.className = "status error";
+
+        currentContent.innerHTML =
+          '<p class="empty error">Could not load current weather. Check the city and API key.</p>';
+
+        forecastContent.innerHTML =
+          '<p class="empty">Forecast is unavailable until the weather request succeeds.</p>';
+
+        countryContent.innerHTML =
+          '<p class="empty">Country details are unavailable because the city country code could not be retrieved.</p>';
+      } finally {
+        searchButton.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

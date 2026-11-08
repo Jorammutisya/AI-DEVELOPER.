@@ -1,0 +1,47 @@
+{
+  "coord": {
+    "lon": 36.8167,
+    "lat": -1.2833
+  },
+  "weather": [
+    {
+      "id": 500,
+      "main": "Rain",
+      "description": "light rain",
+      "icon": "10d"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 21.57,
+    "feels_like": 21.43,
+    "temp_min": 21.57,
+    "temp_max": 21.57,
+    "pressure": 1013,
+    "humidity": 63,
+    "sea_level": 1013,
+    "grnd_level": 837
+  },
+  "visibility": 10000,
+  "wind": {
+    "speed": 5.18,
+    "deg": 44,
+    "gust": 8.5
+  },
+  "rain": {
+    "1h": 0.25
+  },
+  "clouds": {
+    "all": 66
+  },
+  "dt": 1793286691,
+  "sys": {
+    "country": "KE",
+    "sunrise": 1793243504,
+    "sunset": 1793287260
+  },
+  "timezone": 10800,
+  "id": 184745,
+  "name": "Nairobi",
+  "cod": 200
+}

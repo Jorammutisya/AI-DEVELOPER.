@@ -1,0 +1,44 @@
+{
+  "coord": {
+    "lon": 39.6636,
+    "lat": -4.0547
+  },
+  "weather": [
+    {
+      "id": 802,
+      "main": "Clouds",
+      "description": "scattered clouds",
+      "icon": "03n"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 25.06,
+    "feels_like": 26.08,
+    "temp_min": 25.06,
+    "temp_max": 25.06,
+    "pressure": 1012,
+    "humidity": 94,
+    "sea_level": 1012,
+    "grnd_level": 1010
+  },
+  "visibility": 10000,
+  "wind": {
+    "speed": 1.51,
+    "deg": 96,
+    "gust": 1.71
+  },
+  "clouds": {
+    "all": 33
+  },
+  "dt": 1793294522,
+  "sys": {
+    "country": "KE",
+    "sunrise": 1793242661,
+    "sunset": 1793286736
+  },
+  "timezone": 10800,
+  "id": 186301,
+  "name": "Mombasa",
+  "cod": 200
+}

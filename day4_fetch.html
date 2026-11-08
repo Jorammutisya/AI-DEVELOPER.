@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Country Info</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 0 20px;
+      color: #243447;
+    }
+
+    h1 { color: #1F4E79; }
+
+    input {
+      padding: 10px;
+      font-size: 16px;
+      width: 65%;
+      max-width: 300px;
+    }
+
+    button {
+      background: #2E75B6;
+      color: white;
+      border: none;
+      padding: 11px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover { background: #1F4E79; }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: wait;
+    }
+
+    #result {
+      background: #f7f9fc;
+      border: 1px solid #d0dff0;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 20px;
+      line-height: 1.6;
+    }
+
+    .error { color: #b91c1c; }
+    .flag { font-size: 36px; }
+  </style>
+</head>
+
+<body>
+  <h1>Country Info</h1>
+
+  <input
+    type="text"
+    id="countryInput"
+    placeholder="Enter a country name"
+  >
+
+  <button id="searchButton" onclick="loadCountry()">Search</button>
+
+  <div id="result">
+    Enter a country name above and click Search.
+  </div>
+
+  <script>
+    async function loadCountry() {
+      const country = document.getElementById("countryInput").value.trim();
+      const result = document.getElementById("result");
+      const button = document.getElementById("searchButton");
+
+      if (!country) {
+        result.textContent = "Please enter a country name.";
+        return;
+      }
+
+      result.textContent = "Loading...";
+      button.disabled = true;
+
+      try {
+        const url =
+          "https://countries.dev/name/" + encodeURIComponent(country);
+
+        const response = await fetch(url);
+
+        if (!response.ok) {
+          if (response.status === 404) {
+            throw new Error("Country not found. Check the spelling.");
+          }
+
+          throw new Error(
+            `Request failed with status ${response.status}. Try again.`
+          );
+        }
+
+        const data = await response.json();
+
+        // Some search endpoints return a list of matches.
+        const info = Array.isArray(data) ? data[0] : data;
+
+        if (!info || !info.name) {
+          throw new Error("No country information was found.");
+        }
+
+        result.replaceChildren();
+
+        const flag = document.createElement("div");
+        flag.className = "flag";
+        flag.textContent = info.flag || "";
+
+        const heading = document.createElement("h2");
+        heading.textContent = info.name;
+
+        result.append(flag, heading);
+
+        const details = [
+          ["Capital", info.capital || "N/A"],
+          ["Region", info.region || "N/A"],
+          ["Population",
+            info.population != null
+              ? Number(info.population).toLocaleString()
+              : "N/A"
+          ],
+          ["Currency",
+            Array.isArray(info.currencies)
+              ? info.currencies.map(c => `${c.name} (${c.code})`).join(", ")
+              : "N/A"
+          ],
+          ["Languages",
+            Array.isArray(info.languages)
+              ? info.languages.map(l => l.name).join(", ")
+              : "N/A"
+          ]
+        ];
+
+        for (const [label, value] of details) {
+          const p = document.createElement("p");
+          const strong = document.createElement("strong");
+
+          strong.textContent = label + ": ";
+          p.append(strong, document.createTextNode(value));
+          result.appendChild(p);
+        }
+
+      } catch (error) {
+        result.replaceChildren();
+
+        const message = document.createElement("p");
+        message.className = "error";
+
+        message.textContent =
+          error instanceof TypeError
+            ? "Could not connect to the API. Check your internet connection and try again."
+            : error.message;
+
+        result.appendChild(message);
+        console.error("Country lookup failed:", error);
+
+      } finally {
+        button.disabled = false;
+      }
+    }
+  </script>
+</body>
+</html>

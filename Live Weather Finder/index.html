@@ -1,0 +1,390 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Weather Finder</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #dceeff, #f5f8fc);
+      color: #1e293b;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 560px;
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 12px 35px rgba(31, 78, 121, 0.12);
+    }
+
+    h1 {
+      color: #1f4e79;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #64748b;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .search {
+      display: flex;
+      gap: 10px;
+    }
+
+    input {
+      flex: 1;
+      min-width: 0;
+      padding: 13px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    input:focus {
+      outline: 2px solid #93c5fd;
+      border-color: #2563eb;
+    }
+
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 13px 18px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    #result {
+      margin-top: 24px;
+    }
+
+    .message {
+      padding: 16px;
+      border-radius: 10px;
+      background: #f1f5f9;
+      color: #475569;
+      line-height: 1.5;
+    }
+
+    .error {
+      background: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+    }
+
+    .weather-card {
+      background: #eff6ff;
+      padding: 22px;
+      border-radius: 14px;
+      margin-top: 12px;
+    }
+
+    .location {
+      color: #1f4e79;
+      margin: 0;
+    }
+
+    .temperature {
+      font-size: 52px;
+      font-weight: bold;
+      margin: 18px 0 6px;
+      color: #1d4ed8;
+    }
+
+    .condition {
+      color: #475569;
+      margin-bottom: 22px;
+    }
+
+    .details {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .detail {
+      background: white;
+      padding: 14px;
+      border-radius: 10px;
+    }
+
+    .detail-label {
+      font-size: 13px;
+      color: #64748b;
+      margin-bottom: 6px;
+    }
+
+    .detail-value {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .updated {
+      color: #64748b;
+      font-size: 12px;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 420px) {
+      .container {
+        padding: 20px;
+      }
+
+      .search {
+        flex-direction: column;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <h1> Live Weather Finder</h1>
+
+    <p class="subtitle">
+      Check current weather conditions for cities around the world.
+      Free to use, no API key required.
+    </p>
+
+    <form id="weatherForm" class="search">
+      <input
+        type="text"
+        id="cityInput"
+        placeholder="Enter a city, e.g. Nairobi"
+        aria-label="City name"
+        required
+      >
+      <button type="submit" id="searchButton">Search</button>
+    </form>
+
+    <div id="result" aria-live="polite">
+      <div class="message">
+        Enter a city name and click Search to get the latest weather data.
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const form = document.getElementById("weatherForm");
+    const cityInput = document.getElementById("cityInput");
+    const result = document.getElementById("result");
+    const searchButton = document.getElementById("searchButton");
+
+    function showMessage(message, isError = false) {
+      const box = document.createElement("div");
+      box.className = isError ? "message error" : "message";
+      box.textContent = message;
+
+      result.replaceChildren(box);
+    }
+
+    function getCondition(code) {
+      const conditions = {
+        0: "Clear sky",
+        1: "Mainly clear",
+        2: "Partly cloudy",
+        3: "Overcast",
+        45: "Fog",
+        48: "Depositing rime fog",
+        51: "Light drizzle",
+        53: "Moderate drizzle",
+        55: "Dense drizzle",
+        61: "Slight rain",
+        63: "Moderate rain",
+        65: "Heavy rain",
+        71: "Slight snowfall",
+        73: "Moderate snowfall",
+        75: "Heavy snowfall",
+        80: "Rain showers",
+        81: "Moderate rain showers",
+        82: "Violent rain showers",
+        95: "Thunderstorm",
+        96: "Thunderstorm with hail",
+        99: "Severe thunderstorm with hail"
+      };
+
+      return conditions[code] || "Weather conditions unavailable";
+    }
+
+    async function loadWeather(city) {
+      searchButton.disabled = true;
+      searchButton.textContent = "Searching...";
+      showMessage("Loading... Please wait while we fetch the weather.");
+
+      try {
+        // API call 1: Find the city's coordinates.
+        const geoUrl = new URL(
+          "https://geocoding-api.open-meteo.com/v1/search"
+        );
+
+        geoUrl.searchParams.set("name", city);
+        geoUrl.searchParams.set("count", "1");
+        geoUrl.searchParams.set("language", "en");
+        geoUrl.searchParams.set("format", "json");
+
+        const geoResponse = await fetch(geoUrl);
+
+        if (!geoResponse.ok) {
+          throw new Error("Unable to search for the city. Please try again.");
+        }
+
+        const geoData = await geoResponse.json();
+        const place = geoData.results?.[0];
+
+        if (!place) {
+          throw new Error(
+            `We couldn't find "${city}". Check the spelling and try another city.`
+          );
+        }
+
+        // API call 2: Retrieve current weather.
+        const weatherUrl = new URL(
+          "https://api.open-meteo.com/v1/forecast"
+        );
+
+        weatherUrl.searchParams.set("latitude", place.latitude);
+        weatherUrl.searchParams.set("longitude", place.longitude);
+        weatherUrl.searchParams.set(
+          "current",
+          "temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m,weather_code"
+        );
+        weatherUrl.searchParams.set("timezone", "auto");
+
+        const weatherResponse = await fetch(weatherUrl);
+
+        if (!weatherResponse.ok) {
+          throw new Error("Unable to retrieve weather data. Please try again.");
+        }
+
+        const weatherData = await weatherResponse.json();
+        const weather = weatherData.current;
+
+        if (!weather) {
+          throw new Error("Weather data is currently unavailable.");
+        }
+
+        displayWeather(place, weather);
+
+      } catch (error) {
+        console.error("Weather request failed:", error);
+
+        if (error instanceof TypeError) {
+          showMessage(
+            "Connection failed. Check your internet connection and try again.",
+            true
+          );
+        } else {
+          showMessage(error.message, true);
+        }
+
+      } finally {
+        searchButton.disabled = false;
+        searchButton.textContent = "Search";
+      }
+    }
+
+    function displayWeather(place, weather) {
+      result.replaceChildren();
+
+      const card = document.createElement("section");
+      card.className = "weather-card";
+
+      const heading = document.createElement("h2");
+      heading.className = "location";
+      heading.textContent = `${place.name}, ${place.country}`;
+
+      const temperature = document.createElement("div");
+      temperature.className = "temperature";
+      temperature.textContent = `${Math.round(weather.temperature_2m)}°C`;
+
+      const condition = document.createElement("p");
+      condition.className = "condition";
+      condition.textContent = getCondition(weather.weather_code);
+
+      const details = document.createElement("div");
+      details.className = "details";
+
+      const items = [
+        ["Feels like", `${weather.apparent_temperature}°C`],
+        ["Humidity", `${weather.relative_humidity_2m}%`],
+        ["Wind speed", `${weather.wind_speed_10m} km/h`],
+        ["Coordinates", `${place.latitude}, ${place.longitude}`]
+      ];
+
+      for (const [label, value] of items) {
+        const box = document.createElement("div");
+        box.className = "detail";
+
+        const labelElement = document.createElement("div");
+        labelElement.className = "detail-label";
+        labelElement.textContent = label;
+
+        const valueElement = document.createElement("div");
+        valueElement.className = "detail-value";
+        valueElement.textContent = value;
+
+        box.append(labelElement, valueElement);
+        details.appendChild(box);
+      }
+
+      const updated = document.createElement("p");
+      updated.className = "updated";
+      updated.textContent =
+        `Weather observation time: ${weather.time} (${weatherDataTimezone(place)})`;
+
+      card.append(heading, temperature, condition, details, updated);
+      result.appendChild(card);
+    }
+
+    function weatherDataTimezone(place) {
+      return place.timezone || "local time";
+    }
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const city = cityInput.value.trim();
+
+      if (!city) {
+        showMessage("Please enter a city name.", true);
+        return;
+      }
+
+      loadWeather(city);
+    });
+  </script>
+</body>
+</html>

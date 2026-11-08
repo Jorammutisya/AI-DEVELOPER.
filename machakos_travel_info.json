@@ -1,0 +1,430 @@
+{
+  "city": "Machakos",
+  "country_code": "KE",
+  "weather": {
+    "coord": {
+      "lon": 37.2667,
+      "lat": -1.5167
+    },
+    "weather": [
+      {
+        "id": 501,
+        "main": "Rain",
+        "description": "moderate rain",
+        "icon": "10n"
+      }
+    ],
+    "base": "stations",
+    "main": {
+      "temp": 17.55,
+      "feels_like": 17.74,
+      "temp_min": 17.55,
+      "temp_max": 17.55,
+      "pressure": 1015,
+      "humidity": 91,
+      "sea_level": 1015,
+      "grnd_level": 842
+    },
+    "visibility": 3729,
+    "wind": {
+      "speed": 2.81,
+      "deg": 46,
+      "gust": 7.31
+    },
+    "rain": {
+      "1h": 2.5
+    },
+    "clouds": {
+      "all": 92
+    },
+    "dt": 1793294925,
+    "sys": {
+      "country": "KE",
+      "sunrise": 1793243382,
+      "sunset": 1793287166
+    },
+    "timezone": 10800,
+    "id": 188492,
+    "name": "Machakos",
+    "cod": 200
+  },
+  "country": {
+    "names": {
+      "alternates": [
+        "Jamhuri ya Kenya"
+      ],
+      "common": "Kenya",
+      "native": {
+        "eng": {
+          "common": "Kenya",
+          "official": "Republic of Kenya"
+        },
+        "swa": {
+          "common": "Kenya",
+          "official": "Republic of Kenya"
+        }
+      },
+      "official": "Republic of Kenya",
+      "translations": {
+        "ara": {
+          "common": "كينيا",
+          "official": "جمهورية كينيا"
+        },
+        "bre": {
+          "common": "Kenya",
+          "official": "Republik Kenya"
+        },
+        "ces": {
+          "common": "Keňa",
+          "official": "Keňská republika"
+        },
+        "cym": {
+          "common": "Kenya",
+          "official": "Republic of Kenya"
+        },
+        "deu": {
+          "common": "Kenia",
+          "official": "Republik Kenia"
+        },
+        "est": {
+          "common": "Keenia",
+          "official": "Keenia Vabariik"
+        },
+        "fas": {
+          "common": "کنیا",
+          "official": "جمهوری کنیا"
+        },
+        "fin": {
+          "common": "Kenia",
+          "official": "Kenian tasavalta"
+        },
+        "fra": {
+          "common": "Kenya",
+          "official": "République du Kenya"
+        },
+        "hrv": {
+          "common": "Kenija",
+          "official": "Republika Kenija"
+        },
+        "hun": {
+          "common": "Kenya",
+          "official": "Kenyai Köztársaság"
+        },
+        "ind": {
+          "common": "Kenya",
+          "official": "Republik Kenya"
+        },
+        "ita": {
+          "common": "Kenya",
+          "official": "Repubblica del Kenya"
+        },
+        "jpn": {
+          "common": "ケニア",
+          "official": "ケニア共和国"
+        },
+        "kor": {
+          "common": "케냐",
+          "official": "케냐 공화국"
+        },
+        "nld": {
+          "common": "Kenia",
+          "official": "Republiek Kenia"
+        },
+        "pol": {
+          "common": "Kenia",
+          "official": "Republika Kenii"
+        },
+        "por": {
+          "common": "Quénia",
+          "official": "República do Quénia"
+        },
+        "rus": {
+          "common": "Кения",
+          "official": "Республика Кения"
+        },
+        "slk": {
+          "common": "Keňa",
+          "official": "Kenská republika"
+        },
+        "spa": {
+          "common": "Kenia",
+          "official": "República de Kenya"
+        },
+        "srp": {
+          "common": "Кенија",
+          "official": "Република Кенија"
+        },
+        "swe": {
+          "common": "Kenya",
+          "official": "Republiken Kenya"
+        },
+        "tur": {
+          "common": "Kenya",
+          "official": "Kenya Cumhuriyeti"
+        },
+        "urd": {
+          "common": "کینیا",
+          "official": "جمہوریہ کینیا"
+        },
+        "zho": {
+          "common": "肯尼亚",
+          "official": "肯尼亚共和国"
+        }
+      }
+    },
+    "codes": {
+      "alpha_2": "KE",
+      "alpha_3": "KEN",
+      "ccn3": "404",
+      "cioc": "KEN",
+      "fifa": "KEN",
+      "fips": "KE",
+      "gec": "KE"
+    },
+    "capitals": [
+      {
+        "attributes": {
+          "administrative": false,
+          "constitutional": false,
+          "executive": false,
+          "judicial": false,
+          "legislative": false,
+          "primary": true
+        },
+        "coordinates": {
+          "lat": -1.28,
+          "lng": 36.82
+        },
+        "name": "Nairobi"
+      }
+    ],
+    "flag": {
+      "colors": {
+        "dominant": "#f3ede5",
+        "palette": [
+          {
+            "hex": "#f3ede5",
+            "proportion": 0.11009593421653723
+          },
+          {
+            "hex": "#b80000",
+            "proportion": 0.2985381452718136
+          },
+          {
+            "hex": "#096900",
+            "proportion": 0.28803106441297394
+          },
+          {
+            "hex": "#000000",
+            "proportion": 0.2976244860666971
+          },
+          {
+            "hex": "#6a645c",
+            "proportion": 0.002512562814070352
+          },
+          {
+            "hex": "#3c3d41",
+            "proportion": 0.00045682960255824577
+          },
+          {
+            "hex": "#270001",
+            "proportion": 0.0006852444038373687
+          },
+          {
+            "hex": "#520001",
+            "proportion": 0.002055733211512106
+          }
+        ],
+        "prominent": "#b80000",
+        "swatches": {
+          "dark_muted": "#3c3d41",
+          "dark_vibrant": "#520001",
+          "light_muted": "#f3ede5",
+          "light_vibrant": null,
+          "muted": "#6a645c",
+          "vibrant": "#b80000"
+        }
+      },
+      "description": "The flag of Kenya is composed of three equal horizontal bands of black, red with white top and bottom edges, and green. An emblem comprising a red, black and white Maasai shield covering two crossed white spears is superimposed at the center of the field.",
+      "emoji": "🇰🇪",
+      "html_entity": "&#127472;&#127466;",
+      "unicode": "U+1F1F0 U+1F1EA",
+      "url_png": "https://flags.restcountries.com/v5/w640/ke.png",
+      "url_svg": "https://flags.restcountries.com/v5/svg/ke.svg"
+    },
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "area": {
+      "kilometers": 580367,
+      "miles": 224080.9
+    },
+    "assets": [],
+    "borders": [
+      "ETH",
+      "SOM",
+      "SSD",
+      "TZA",
+      "UGA"
+    ],
+    "calling_codes": [
+      "254"
+    ],
+    "cars": {
+      "driving_side": "left",
+      "signs": [
+        "EAK"
+      ]
+    },
+    "classification": {
+      "dependency": false,
+      "dependency_type": "",
+      "disputed": false,
+      "iso_status": "official",
+      "sovereign": true,
+      "un_member": true,
+      "un_observer": false
+    },
+    "continents": [
+      "Africa"
+    ],
+    "coordinates": {
+      "lat": 1,
+      "lng": 38
+    },
+    "currencies": [
+      {
+        "code": "KES",
+        "name": "Kenyan shilling",
+        "symbol": "Sh"
+      }
+    ],
+    "date": {
+      "academic_year_start": {
+        "day": 1,
+        "month": 1
+      },
+      "fiscal_year_start": {
+        "corporate": {
+          "basis": "default",
+          "day": 1,
+          "month": 7
+        },
+        "government": {
+          "day": 1,
+          "month": 7
+        },
+        "personal": {
+          "day": 1,
+          "month": 1
+        }
+      },
+      "start_of_week": "monday"
+    },
+    "demonyms": {
+      "eng": {
+        "f": "Kenyan",
+        "m": "Kenyan"
+      },
+      "fra": {
+        "f": "Kényane",
+        "m": "Kényan"
+      }
+    },
+    "descriptions": {
+      "long": "Kenya is a republic with Nairobi as its capital and Swahili and English as official languages. The shilling is the currency, and tea, cut flowers, horticulture, tourism and a large mobile money sector lead its economy and export earnings.",
+      "short": "Kenya is an East African republic on the Indian Ocean, crossed by the equator and Rift Valley."
+    },
+    "economy": {
+      "gini_coefficient": {
+        "2005": 46.4,
+        "2015": 40.8,
+        "2020": 36.2,
+        "2021": 38.7,
+        "2022": 38.5
+      }
+    },
+    "government_type": "Unitary presidential republic",
+    "landlocked": false,
+    "languages": [
+      {
+        "bcp47": "en",
+        "iso639_1": "en",
+        "iso639_2b": "eng",
+        "iso639_2t": "eng",
+        "iso639_3": "eng",
+        "name": "English",
+        "native_name": "English"
+      },
+      {
+        "bcp47": "sw",
+        "iso639_1": "sw",
+        "iso639_2b": "swa",
+        "iso639_2t": "swa",
+        "iso639_3": "swa",
+        "name": "Swahili",
+        "native_name": "Kiswahili"
+      }
+    ],
+    "leaders": [
+      {
+        "message": "data.leaders is only available on paid plans. Go to https://restcountries.com/plans to make updates to your account.",
+        "sample": "https://files-03.restcountries.com/countries.00/sample.leaders.json"
+      }
+    ],
+    "links": {
+      "google_maps": "https://goo.gl/maps/Ni9M7wcCxf8bJHLX8",
+      "official": "https://www.president.go.ke",
+      "open_street_maps": "https://www.openstreetmap.org/relation/192798",
+      "wikipedia": "https://en.wikipedia.org/wiki/Kenya"
+    },
+    "memberships": {
+      "african_union": true,
+      "arab_league": false,
+      "asean": false,
+      "brics": false,
+      "commonwealth": true,
+      "eu": false,
+      "eurozone": false,
+      "g20": false,
+      "g7": false,
+      "nato": false,
+      "oecd": false,
+      "opec": false,
+      "schengen": false,
+      "un": true
+    },
+    "number_format": {
+      "decimal_separator": ".",
+      "thousands_separator": ","
+    },
+    "parent": {
+      "alpha_2": "",
+      "alpha_3": ""
+    },
+    "population": 54227015,
+    "postal_code": {
+      "format": "#####",
+      "regex": "^(\\d{5})$"
+    },
+    "timezones": [
+      "UTC+03:00"
+    ],
+    "tlds": [
+      ".ke"
+    ],
+    "units": {
+      "measurement_system": "metric",
+      "temperature_scale": "Celsius"
+    },
+    "uuid": "c84e27f5-05fb-4ea8-b9b3-118902bedc44",
+    "_match": [
+      {
+        "path": "codes.alpha_2",
+        "value": "KE"
+      }
+    ],
+    "_meta": {
+      "lastUpdatedTimestamp": 1791328710
+    }
+  }
+}
