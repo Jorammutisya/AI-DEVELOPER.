@@ -6,7 +6,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 # Load environment variables from .env
-env_path = Path(__file__).resolve().parent / ".env"
+env_path = Path(__file__).resolve().parents[1] / ".env"
 load_dotenv(dotenv_path=env_path)
 
 weather_api_key = os.getenv("OPENWEATHER_API_KEY")
